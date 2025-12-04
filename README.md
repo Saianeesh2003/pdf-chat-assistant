@@ -1,6 +1,10 @@
 # 📚 PDF Chat Assistant with RAG
 
-An intelligent PDF chatbot powered by Retrieval Augmented Generation (RAG) that allows users to have natural conversations with their PDF documents. Built with Google Gemini, LangChain, and Qdrant vector database.
+An intelligent PDF chatbot powered by Retrieval Augmented Generation (RAG) that allows users to have natural conversations with their PDF documents.
+
+
+
+**🎯 Live Demo:** [https://pdf-chat-assistant-saianeesh.streamlit.app/](https://pdf-chat-assistant-saianeesh.streamlit.app/)
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](your-app-url-here)
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
@@ -137,7 +141,7 @@ Visit `http://localhost:6333/dashboard`
 
 ## 🌐 Deployment
 
-This app is deployed on [Streamlit Cloud](https://streamlit.io/cloud). To deploy your own:
+This app is deployed using  [Streamlit Cloud](https://streamlit.io/cloud). To deploy your own:
 
 1. Push your code to GitHub
 2. Go to [share.streamlit.io](https://share.streamlit.io)
