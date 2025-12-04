@@ -181,7 +181,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Your Name** - [@Saianeesh2003](https://github.com/Saianeesh2003)
 
 Project Link: [https://github.com/Saianeesh2003/pdf-chat-assistant](https://github.com/Saianeesh2003/pdf-chat-assistant)
-
+ 
 ---
 
 ⭐ If you find this project helpful, please consider giving it a star!
@@ -198,12 +198,7 @@ Project Link: [https://github.com/Saianeesh2003/pdf-chat-assistant](https://gith
 - [ ] User authentication
 - [ ] API endpoints for integration
 
-## 📊 Performance
 
-- **Average Response Time**: < 3 seconds
-- **Supported PDF Size**: Up to 50MB
-- **Concurrent Users**: Scalable with Streamlit Cloud
-- **Vector Storage**: 1GB free tier on Qdrant Cloud
 
 ## 🔒 Security
 
@@ -212,9 +207,3 @@ Project Link: [https://github.com/Saianeesh2003/pdf-chat-assistant](https://gith
 - Secure cloud deployment
 - HTTPS encryption on Streamlit Cloud
 
-## 📚 Learn More
-
-- [RAG Tutorial](https://python.langchain.com/docs/use_cases/question_answering/)
-- [Google Gemini Documentation](https://ai.google.dev/tutorials/python_quickstart)
-- [Qdrant Documentation](https://qdrant.tech/documentation/)
-- [Streamlit Documentation](https://docs.streamlit.io/)
