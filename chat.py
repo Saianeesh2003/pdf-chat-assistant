@@ -1,13 +1,15 @@
 from dotenv import load_dotenv
-from google import genai
-from google.genai import types
+from anthropic import Anthropic
 import os
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_qdrant import QdrantVectorStore 
 
 load_dotenv()
-client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
 
+# Initialize Claude client
+client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+
+# Keep using Google embeddings (they work great!)
 embeddings = GoogleGenerativeAIEmbeddings(
     model="models/text-embedding-004"
 )
@@ -35,7 +37,7 @@ while True:
         for result in search_results
     ])
     
-    SYSTEM_PROMPT = f"""
+    SYSTEM_PROMPT = """
     You are a helpful AI Assistant who answers user queries based on the available context
     retrieved from a PDF file along with page contents and page numbers.
 
@@ -43,22 +45,20 @@ while True:
     to open the right page number to know more.
     Also if there is any topic which might require a code as sample example you can give it as well.
     Also if in case user asks to give me a summary of entire PDF you can do it.
-    
-    Context:
-    {context}
     """
     
-    contents = [
-        {"role": "user", "parts": [{"text": query}]} 
-    ]
-    
-    response = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=contents,
-        config=types.GenerateContentConfig(
-            system_instruction=SYSTEM_PROMPT,
-            temperature=0.7,
-        )
+    # Claude API call
+    response = client.messages.create(
+        model="claude-haiku-4-5-20251001",  
+        max_tokens=2000,
+        system=SYSTEM_PROMPT,
+        messages=[
+            {
+                "role": "user",
+                "content": f"Context:\n{context}\n\nQuestion: {query}"
+            }
+        ],
+        temperature=0.7
     )
     
-    print(f"\n🤖 {response.text}\n")
+    print(f"\n🤖 {response.content[0].text}\n")

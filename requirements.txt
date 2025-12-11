@@ -1,5 +1,5 @@
 streamlit==1.39.0
-google-genai
+anthropic
 python-dotenv
 langchain-community
 langchain-text-splitters
@@ -7,3 +7,4 @@ langchain-google-genai
 langchain-qdrant
 qdrant-client
 pypdf
+google-genai

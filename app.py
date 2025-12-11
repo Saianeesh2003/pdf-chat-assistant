@@ -1,7 +1,6 @@
 import streamlit as st
 from dotenv import load_dotenv
-from google import genai
-from google.genai import types
+from anthropic import Anthropic
 import os
 from pathlib import Path
 
@@ -9,11 +8,12 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_qdrant import QdrantVectorStore
+
 # Qdrant configuration - works for both local and cloud
 QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY", None)
 
-# Update all QdrantVectorStore calls to use these
+# Page config
 st.set_page_config(
     page_title="PDF Chat Assistant",
     page_icon="📚",
@@ -34,7 +34,7 @@ if 'indexed' not in st.session_state:
 # Initialize clients
 @st.cache_resource
 def init_clients():
-    client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
+    client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
     embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
     return client, embeddings
 
@@ -43,6 +43,7 @@ client, embeddings = init_clients()
 # Sidebar for PDF upload and indexing
 with st.sidebar:
     st.title("📚 PDF Chat Assistant")
+    st.markdown("*Powered by Claude*")
     st.markdown("---")
     
     # PDF Upload
@@ -75,7 +76,7 @@ with st.sidebar:
                         embedding=embeddings,
                         collection_name=collection_name,
                         url=QDRANT_URL,
-    api_key=QDRANT_API_KEY
+                        api_key=QDRANT_API_KEY
                     )
                     
                     st.session_state.vector_db = vectorstore
@@ -96,8 +97,8 @@ with st.sidebar:
             vector_db = QdrantVectorStore.from_existing_collection(
                 embedding=embeddings,
                 collection_name=collection_name_input,
-               url=QDRANT_URL,
-    api_key=QDRANT_API_KEY
+                url=QDRANT_URL,
+                api_key=QDRANT_API_KEY
             )
             st.session_state.vector_db = vector_db
             st.session_state.indexed = True
@@ -119,6 +120,7 @@ with st.sidebar:
     with st.expander("⚙️ Settings", expanded=False):
         temperature = st.slider("Temperature", 0.0, 1.0, 0.7, 0.1)
         num_results = st.slider("Number of context chunks", 1, 5, 3)
+        max_tokens = st.slider("Max tokens", 500, 4000, 2000, 100)
 
 # Main chat interface
 st.title("💬 Chat with Your PDF")
@@ -163,32 +165,31 @@ if prompt := st.chat_input("Ask a question about your PDF..."):
                         sources_text += f"**Source {i}** (Page {result.metadata.get('page', 'N/A')}):\n"
                         sources_text += f"{result.page_content[:200]}...\n\n"
                     
-                    SYSTEM_PROMPT = f"""
+                    SYSTEM_PROMPT = """
                     You are a helpful AI Assistant who answers user queries based on the available context
                     retrieved from a PDF file along with page contents and page numbers.
 
                     You should only answer the user based on the following context and navigate the user
                     to open the right page number to know more.
-                         Also if there is any topic which might require a code as sample example you give give it as well,
-    Also if in case user asks to give me a summary of entire PDF you can do it 
-                    Context:
-                    {context}
+                    Also if there is any topic which might require a code as sample example you can give it as well.
+                    Also if in case user asks to give me a summary of entire PDF you can do it.
                     """
                     
-                    contents = [
-                        {"role": "user", "parts": [{"text": prompt}]} 
-                    ]
-                    
-                    response = client.models.generate_content(
-                        model="gemini-2.0-flash",
-                        contents=contents,
-                        config=types.GenerateContentConfig(
-                            system_instruction=SYSTEM_PROMPT,
-                            temperature=temperature,
-                        )
+                    # Claude API call
+                    response = client.messages.create(
+                        model="claude-sonnet-4-20250514",
+                        max_tokens=max_tokens,
+                        system=SYSTEM_PROMPT,
+                        messages=[
+                            {
+                                "role": "user",
+                                "content": f"Context:\n{context}\n\nQuestion: {prompt}"
+                            }
+                        ],
+                        temperature=temperature
                     )
                     
-                    response_text = response.text
+                    response_text = response.content[0].text
                     st.markdown(response_text)
                     
                     # Show sources
