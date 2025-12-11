@@ -1,24 +1,23 @@
 # 📚 PDF Chat Assistant with RAG
 
-An intelligent PDF chatbot powered by Retrieval Augmented Generation (RAG) that allows users to have natural conversations with their PDF documents.
-
-
+An intelligent PDF chatbot powered by Retrieval Augmented Generation (RAG) that allows users to have natural conversations with their PDF documents. Built with Claude AI, LangChain, and Qdrant vector database.
 
 **🎯 Live Demo:** [https://pdf-chat-assistant-saianeesh.streamlit.app/](https://pdf-chat-assistant-saianeesh.streamlit.app/)
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](your-app-url-here)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://pdf-chat-assistant-saianeesh.streamlit.app/)
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Claude](https://img.shields.io/badge/Claude-Sonnet%204-blueviolet)
 
 ## 🌟 Features
 
 - **📄 PDF Upload & Processing**: Upload any PDF document and chat with its content
-- **🤖 AI-Powered Responses**: Leverages Google Gemini 2.0 for intelligent answers
+- **🤖 AI-Powered Responses**: Leverages Claude Sonnet 4 for intelligent, contextual answers
 - **🔍 Semantic Search**: Uses advanced vector embeddings for accurate context retrieval
 - **💾 Persistent Storage**: Qdrant Cloud integration for permanent vector storage
 - **📖 Source Citations**: Every answer includes page references for verification
 - **💬 Interactive UI**: Clean, modern Streamlit interface with chat history
-- **⚙️ Customizable Settings**: Adjust temperature and context chunks for optimal results
+- **⚙️ Customizable Settings**: Adjust temperature, context chunks, and max tokens for optimal results
 - **🌐 Cloud Deployment**: Fully deployed and accessible from anywhere
 
 ## 🏗️ Architecture
@@ -26,13 +25,13 @@ An intelligent PDF chatbot powered by Retrieval Augmented Generation (RAG) that 
 ```
 PDF Document → Text Extraction → Chunking → Embeddings → Vector DB (Qdrant)
                                                               ↓
-User Query → Embedding → Similarity Search → Context Retrieval → LLM (Gemini) → Response
+User Query → Embedding → Similarity Search → Context Retrieval → LLM (Claude) → Response
 ```
 
 ### Technology Stack
 
 - **Frontend**: Streamlit
-- **LLM**: Google Gemini 2.0 Flash
+- **LLM**: Claude Sonnet 4 (Anthropic)
 - **Embeddings**: Google Generative AI Embeddings (text-embedding-004)
 - **Vector Database**: Qdrant Cloud
 - **Framework**: LangChain
@@ -43,7 +42,8 @@ User Query → Embedding → Similarity Search → Context Retrieval → LLM (Ge
 ### Prerequisites
 
 - Python 3.8 or higher
-- Google API Key ([Get one here](https://makersuite.google.com/app/apikey))
+- Claude API Key ([Get one here](https://console.anthropic.com/))
+- Google API Key for embeddings ([Get one here](https://makersuite.google.com/app/apikey))
 - Qdrant Cloud account ([Sign up](https://cloud.qdrant.io))
 
 ### Installation
@@ -63,6 +63,7 @@ pip install -r requirements.txt
 
 Create a `.env` file in the root directory:
 ```env
+ANTHROPIC_API_KEY=your_claude_api_key_here
 GOOGLE_API_KEY=your_google_api_key_here
 QDRANT_URL=your_qdrant_cluster_url
 QDRANT_API_KEY=your_qdrant_api_key
@@ -83,6 +84,7 @@ The app will open in your browser at `http://localhost:8501`
 2. **Index the document**: Click "🔄 Index PDF" to process and store the document
 3. **Start chatting**: Ask questions about your PDF in the chat input
 4. **View sources**: Expand the "📄 View Sources" section to see relevant excerpts
+5. **Adjust settings**: Open the Settings expander to customize temperature, context chunks, and max tokens
 
 ### Command Line Interface
 
@@ -141,12 +143,13 @@ Visit `http://localhost:6333/dashboard`
 
 ## 🌐 Deployment
 
-This app is deployed using  [Streamlit Cloud](https://streamlit.io/cloud). To deploy your own:
+This app is deployed on [Streamlit Cloud](https://streamlit.io/cloud). To deploy your own:
 
 1. Push your code to GitHub
 2. Go to [share.streamlit.io](https://share.streamlit.io)
 3. Connect your repository
 4. Add secrets in advanced settings:
+   - `ANTHROPIC_API_KEY`
    - `GOOGLE_API_KEY`
    - `QDRANT_URL`
    - `QDRANT_API_KEY`
@@ -175,17 +178,18 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- [Google Gemini](https://deepmind.google/technologies/gemini/) for the powerful LLM
+- [Anthropic Claude](https://www.anthropic.com/claude) for the powerful and thoughtful LLM
+- [Google AI](https://ai.google.dev/) for high-quality embeddings
 - [LangChain](https://langchain.com/) for the RAG framework
 - [Qdrant](https://qdrant.tech/) for vector database
 - [Streamlit](https://streamlit.io/) for the web framework
 
 ## 📧 Contact
 
-**Your Name** - [@Saianeesh2003](https://github.com/Saianeesh2003)
+**Sai Aneesh** - [@Saianeesh2003](https://github.com/Saianeesh2003)
 
 Project Link: [https://github.com/Saianeesh2003/pdf-chat-assistant](https://github.com/Saianeesh2003/pdf-chat-assistant)
- 
+
 ---
 
 ⭐ If you find this project helpful, please consider giving it a star!
@@ -201,13 +205,10 @@ Project Link: [https://github.com/Saianeesh2003/pdf-chat-assistant](https://gith
 - [ ] Advanced search filters
 - [ ] User authentication
 - [ ] API endpoints for integration
+- [ ] Multi-modal support (images, tables)
+- [ ] Comparison mode (compare multiple PDFs)
 
 
-
-## 🔒 Security
-
-- API keys stored as environment variables
-- No sensitive data in repository
-- Secure cloud deployment
-- HTTPS encryption on Streamlit Cloud
-
+- **Supported PDF Size**: Up to 50MB
+- **Concurrent Users**: Scalable with Streamlit Cloud
+- **Vector Storage**: 1GB free tier on
