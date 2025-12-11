@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+.DS_Store
+temp_uploaded.pdf
+qdrant_storage/
+nodejs.pdf
