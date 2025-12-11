@@ -1,6 +1,10 @@
 # 📚 PDF Chat Assistant with RAG
 
-An intelligent PDF chatbot powered by Retrieval Augmented Generation (RAG) that allows users to have natural conversations with their PDF documents. Built with Google Gemini, LangChain, and Qdrant vector database.
+An intelligent PDF chatbot powered by Retrieval Augmented Generation (RAG) that allows users to have natural conversations with their PDF documents.
+
+
+
+**🎯 Live Demo:** [https://pdf-chat-assistant-saianeesh.streamlit.app/](https://pdf-chat-assistant-saianeesh.streamlit.app/)
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](your-app-url-here)
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
@@ -137,7 +141,7 @@ Visit `http://localhost:6333/dashboard`
 
 ## 🌐 Deployment
 
-This app is deployed on [Streamlit Cloud](https://streamlit.io/cloud). To deploy your own:
+This app is deployed using  [Streamlit Cloud](https://streamlit.io/cloud). To deploy your own:
 
 1. Push your code to GitHub
 2. Go to [share.streamlit.io](https://share.streamlit.io)
@@ -181,7 +185,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Your Name** - [@Saianeesh2003](https://github.com/Saianeesh2003)
 
 Project Link: [https://github.com/Saianeesh2003/pdf-chat-assistant](https://github.com/Saianeesh2003/pdf-chat-assistant)
-
+ 
 ---
 
 ⭐ If you find this project helpful, please consider giving it a star!
@@ -198,12 +202,7 @@ Project Link: [https://github.com/Saianeesh2003/pdf-chat-assistant](https://gith
 - [ ] User authentication
 - [ ] API endpoints for integration
 
-## 📊 Performance
 
-- **Average Response Time**: < 3 seconds
-- **Supported PDF Size**: Up to 50MB
-- **Concurrent Users**: Scalable with Streamlit Cloud
-- **Vector Storage**: 1GB free tier on Qdrant Cloud
 
 ## 🔒 Security
 
@@ -212,9 +211,3 @@ Project Link: [https://github.com/Saianeesh2003/pdf-chat-assistant](https://gith
 - Secure cloud deployment
 - HTTPS encryption on Streamlit Cloud
 
-## 📚 Learn More
-
-- [RAG Tutorial](https://python.langchain.com/docs/use_cases/question_answering/)
-- [Google Gemini Documentation](https://ai.google.dev/tutorials/python_quickstart)
-- [Qdrant Documentation](https://qdrant.tech/documentation/)
-- [Streamlit Documentation](https://docs.streamlit.io/)
