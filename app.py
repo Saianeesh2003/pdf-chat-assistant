@@ -34,7 +34,7 @@ if 'indexed' not in st.session_state:
 # Initialize clients
 @st.cache_resource
 def init_clients():
-    client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+    client = Anthropic(api_key=os.getenv("CLAUDE_API_KEY") or st.secrets.get("CLAUDE_API_KEY"))
     embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
     return client, embeddings
 
@@ -177,7 +177,7 @@ if prompt := st.chat_input("Ask a question about your PDF..."):
                     
                     # Claude API call
                     response = client.messages.create(
-                        model="claude-sonnet-4-20250514",
+                        model="claude-haiku-4-5-20251001",
                         max_tokens=max_tokens,
                         system=SYSTEM_PROMPT,
                         messages=[
