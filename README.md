@@ -12,7 +12,7 @@ An intelligent PDF chatbot powered by Retrieval Augmented Generation (RAG) that 
 ## 🌟 Features
 
 - **📄 PDF Upload & Processing**: Upload any PDF document and chat with its content
-- **🤖 AI-Powered Responses**: Leverages Claude Sonnet 4 for intelligent, contextual answers
+- **🤖 AI-Powered Responses**: Leverages Claude for intelligent, contextual answers
 - **🔍 Semantic Search**: Uses advanced vector embeddings for accurate context retrieval
 - **💾 Persistent Storage**: Qdrant Cloud integration for permanent vector storage
 - **📖 Source Citations**: Every answer includes page references for verification
