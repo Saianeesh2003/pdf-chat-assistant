@@ -2,7 +2,9 @@
 
 An intelligent PDF chatbot powered by Retrieval Augmented Generation (RAG) that allows users to have natural conversations with their PDF documents. Built with Claude AI, LangChain, and Qdrant vector database.
 
-**🎯 Live Demo:** [https://pdf-chat-assistant-saianeesh.streamlit.app/](https://pdf-chat-assistant-saianeesh.streamlit.app/)
+**🎯 Live at:** [https://pdf-chat-assistant-saianeesh.streamlit.app/](https://pdf-chat-assistant-saianeesh.streamlit.app/)
+
+Demo video: https://youtu.be/nla_TZYSglc
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://pdf-chat-assistant-saianeesh.streamlit.app/)
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
