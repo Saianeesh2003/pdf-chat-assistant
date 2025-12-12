@@ -31,7 +31,7 @@ User Query → Embedding → Similarity Search → Context Retrieval → LLM (Cl
 ### Technology Stack
 
 - **Frontend**: Streamlit
-- **LLM**: Claude Sonnet 4 (Anthropic)
+- **LLM**: Claude (Anthropic)
 - **Embeddings**: Google Generative AI Embeddings (text-embedding-004)
 - **Vector Database**: Qdrant Cloud
 - **Framework**: LangChain
